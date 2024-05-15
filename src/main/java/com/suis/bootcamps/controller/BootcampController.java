@@ -4,7 +4,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -51,7 +50,7 @@ public class BootcampController {
 
         List<OutBootcampDTO> dtos = bootcampsFound.stream()
                 .map(b -> new OutBootcampDTO(b))
-                .collect(Collectors.toList());
+                .toList();
 
         return ResponseEntity.ok(dtos);
     }
@@ -63,6 +62,7 @@ public class BootcampController {
         return ResponseEntity.ok(new OutBootcampDTO(bootcampFound));
     }
 
+    // PUT
     @PutMapping("{id}")
     public ResponseEntity<OutBootcampDTO> update(@PathVariable UUID id, @RequestBody InBootcampDTO dto) {
         Bootcamp bootcampFound = service.update(id, dto);
@@ -70,6 +70,7 @@ public class BootcampController {
         return ResponseEntity.ok(new OutBootcampDTO(bootcampFound));
     }
 
+    // DELETE
     @DeleteMapping("{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
         service.delete(id);
