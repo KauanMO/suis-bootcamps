@@ -29,6 +29,7 @@ import lombok.RequiredArgsConstructor;
 public class ClassController {
     final ClassService service;
 
+    // POST
     @PostMapping
     public ResponseEntity<OutClassDTO> register(@RequestBody @Valid InClassDTO dto) throws URISyntaxException {
         Class newClass = service.create(dto);
@@ -38,6 +39,7 @@ public class ClassController {
         return ResponseEntity.created(uri).body(new OutClassDTO(newClass));
     }
 
+    // GET
     @GetMapping
     public ResponseEntity<List<OutClassDTO>> findAll() {
         List<Class> classesFound = service.findAll();
@@ -60,6 +62,7 @@ public class ClassController {
         return ResponseEntity.ok(new OutClassDTO(classFound));
     }
 
+    // PUT
     @PutMapping("{id}")
     public ResponseEntity<OutClassDTO> update(@PathVariable UUID id, @RequestBody @Valid InClassDTO dto) {
         Class classFound = service.update(id, dto);
@@ -67,6 +70,7 @@ public class ClassController {
         return ResponseEntity.ok(new OutClassDTO(classFound));
     }
 
+    // DELETE
     @DeleteMapping("{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
         service.delete(id);
