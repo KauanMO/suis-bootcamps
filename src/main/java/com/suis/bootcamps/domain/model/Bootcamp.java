@@ -23,6 +23,9 @@ public class Bootcamp {
     private UUID id;
 
     @Column
+    private String title;
+
+    @Column
     private String icon;
 
     @Column
@@ -33,6 +36,9 @@ public class Bootcamp {
 
     @Column
     private LocalDateTime finalDate;
+
+    @Column
+    private UUID createdBy;
 
     @OneToMany(mappedBy = "id")
     private List<Participant> participants;
