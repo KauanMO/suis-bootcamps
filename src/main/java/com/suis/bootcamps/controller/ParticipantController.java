@@ -50,7 +50,7 @@ public class ParticipantController {
         }
 
         List<OutParticipantDTO> dtos = participantsFound.stream()
-                .map(p -> new OutParticipantDTO(p))
+                .map(OutParticipantDTO::new)
                 .toList();
 
         return ResponseEntity.ok(dtos);

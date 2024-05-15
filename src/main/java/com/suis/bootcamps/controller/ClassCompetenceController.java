@@ -50,7 +50,7 @@ public class ClassCompetenceController {
         }
 
         List<OutClassCompetenceDTO> dtos = classCompetencesFound.stream()
-                .map(cc -> new OutClassCompetenceDTO(cc))
+                .map(OutClassCompetenceDTO::new)
                 .toList();
 
         return ResponseEntity.ok(dtos);

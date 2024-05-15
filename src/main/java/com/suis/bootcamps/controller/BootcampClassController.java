@@ -48,7 +48,7 @@ public class BootcampClassController {
         }
 
         List<OutBootcampClassDTO> dtos = bootcampClassesFound.stream()
-                .map(bc -> new OutBootcampClassDTO(bc))
+                .map(OutBootcampClassDTO::new)
                 .toList();
 
         return ResponseEntity.ok(dtos);

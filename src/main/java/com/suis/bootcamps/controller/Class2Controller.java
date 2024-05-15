@@ -42,14 +42,14 @@ public class Class2Controller {
     // GET
     @GetMapping
     public ResponseEntity<List<OutClass2DTO>> findAll() {
-        List<Class2 > classesFound = service.findAll();
+        List<Class2> classesFound = service.findAll();
 
         if (classesFound.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
 
         List<OutClass2DTO> dtos = classesFound.stream()
-                .map(c -> new OutClass2DTO(c))
+                .map(OutClass2DTO::new)
                 .toList();
 
         return ResponseEntity.ok(dtos);
