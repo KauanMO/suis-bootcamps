@@ -29,7 +29,7 @@ public class Bootcamp {
     private String icon;
 
     @Column
-    private Integer max_participants;
+    private Integer maxParticipants;
 
     @Column
     private LocalDateTime inicialDate;
