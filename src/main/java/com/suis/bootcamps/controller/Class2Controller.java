@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.suis.bootcamps.controller.dto.class2.InClassDTO;
-import com.suis.bootcamps.controller.dto.class2.OutClassDTO;
-import com.suis.bootcamps.domain.model.Class;
-import com.suis.bootcamps.service.ClassService;
+import com.suis.bootcamps.controller.dto.class2.InClass2DTO;
+import com.suis.bootcamps.controller.dto.class2.OutClass2DTO;
+import com.suis.bootcamps.domain.model.Class2;
+import com.suis.bootcamps.service.Class2Service;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,48 +26,48 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("classes")
-public class ClassController {
-    final ClassService service;
+public class Class2Controller {
+    final Class2Service service;
 
     // POST
     @PostMapping
-    public ResponseEntity<OutClassDTO> register(@RequestBody @Valid InClassDTO dto) throws URISyntaxException {
-        Class newClass = service.create(dto);
+    public ResponseEntity<OutClass2DTO> register(@RequestBody @Valid InClass2DTO dto) throws URISyntaxException {
+        Class2 newClass = service.create(dto);
 
         URI uri = new URI("classes/" + newClass.getId());
 
-        return ResponseEntity.created(uri).body(new OutClassDTO(newClass));
+        return ResponseEntity.created(uri).body(new OutClass2DTO(newClass));
     }
 
     // GET
     @GetMapping
-    public ResponseEntity<List<OutClassDTO>> findAll() {
-        List<Class> classesFound = service.findAll();
+    public ResponseEntity<List<OutClass2DTO>> findAll() {
+        List<Class2 > classesFound = service.findAll();
 
         if (classesFound.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
 
-        List<OutClassDTO> dtos = classesFound.stream()
-                .map(c -> new OutClassDTO(c))
+        List<OutClass2DTO> dtos = classesFound.stream()
+                .map(c -> new OutClass2DTO(c))
                 .toList();
 
         return ResponseEntity.ok(dtos);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<OutClassDTO> findById(@PathVariable UUID id) {
-        Class classFound = service.findById(id);
+    public ResponseEntity<OutClass2DTO> findById(@PathVariable UUID id) {
+        Class2 classFound = service.findById(id);
 
-        return ResponseEntity.ok(new OutClassDTO(classFound));
+        return ResponseEntity.ok(new OutClass2DTO(classFound));
     }
 
     // PUT
     @PutMapping("{id}")
-    public ResponseEntity<OutClassDTO> update(@PathVariable UUID id, @RequestBody @Valid InClassDTO dto) {
-        Class classFound = service.update(id, dto);
+    public ResponseEntity<OutClass2DTO> update(@PathVariable UUID id, @RequestBody @Valid InClass2DTO dto) {
+        Class2 classFound = service.update(id, dto);
 
-        return ResponseEntity.ok(new OutClassDTO(classFound));
+        return ResponseEntity.ok(new OutClass2DTO(classFound));
     }
 
     // DELETE

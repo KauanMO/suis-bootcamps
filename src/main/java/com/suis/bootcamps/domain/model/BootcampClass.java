@@ -22,7 +22,7 @@ public class BootcampClass {
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
-    private Class class_;
+    private Class2 class2;
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")

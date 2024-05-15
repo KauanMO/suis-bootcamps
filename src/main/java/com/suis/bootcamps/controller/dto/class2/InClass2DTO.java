@@ -5,7 +5,7 @@ import java.util.UUID;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public record InClassDTO(@NotNull @NotBlank String title,
+public record InClass2DTO(@NotNull @NotBlank String title,
                 @NotNull UUID tutor,
                 @NotNull Integer duration) {
 }
