@@ -1,4 +1,4 @@
-package com.suis.bootcamps.domain.model;
+package com.suis.bootcamps.domain.model.template;
 
 import java.util.UUID;
 
