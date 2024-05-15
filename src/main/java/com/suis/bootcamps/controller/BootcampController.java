@@ -64,7 +64,7 @@ public class BootcampController {
 
     // PUT
     @PutMapping("{id}")
-    public ResponseEntity<OutBootcampDTO> update(@PathVariable UUID id, @RequestBody InBootcampDTO dto) {
+    public ResponseEntity<OutBootcampDTO> update(@PathVariable UUID id, @RequestBody @Valid InBootcampDTO dto) {
         Bootcamp bootcampFound = service.update(id, dto);
 
         return ResponseEntity.ok(new OutBootcampDTO(bootcampFound));

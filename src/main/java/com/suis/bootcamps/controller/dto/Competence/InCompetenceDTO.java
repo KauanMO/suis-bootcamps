@@ -1,4 +1,4 @@
-package com.suis.bootcamps.controller.dto.Competence;
+package com.suis.bootcamps.controller.dto.competence;
 
 
 import java.util.UUID;

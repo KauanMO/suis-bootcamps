@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.suis.bootcamps.controller.dto.Competence.InCompetenceDTO;
-import com.suis.bootcamps.controller.dto.Competence.OutCompetenceDTO;
+import com.suis.bootcamps.controller.dto.competence.InCompetenceDTO;
+import com.suis.bootcamps.controller.dto.competence.OutCompetenceDTO;
 import com.suis.bootcamps.domain.model.Competence;
 import com.suis.bootcamps.service.CompetenceService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -30,7 +31,7 @@ public class CompetenceController {
 
     // POST
     @PostMapping
-    public ResponseEntity<OutCompetenceDTO> register(@RequestBody InCompetenceDTO dto) throws URISyntaxException {
+    public ResponseEntity<OutCompetenceDTO> register(@RequestBody @Valid InCompetenceDTO dto) throws URISyntaxException {
         Competence newCompetence = service.create(dto);
 
         URI uri = new URI("competences/" + newCompetence.getId());
@@ -63,7 +64,7 @@ public class CompetenceController {
 
     // PUT
     @PutMapping("{id}")
-    public ResponseEntity<OutCompetenceDTO> update(@PathVariable UUID id, @RequestBody InCompetenceDTO dto) {
+    public ResponseEntity<OutCompetenceDTO> update(@PathVariable UUID id, @RequestBody @Valid InCompetenceDTO dto) {
         Competence competenceFound = service.update(id, dto);
 
         return ResponseEntity.ok(new OutCompetenceDTO(competenceFound));

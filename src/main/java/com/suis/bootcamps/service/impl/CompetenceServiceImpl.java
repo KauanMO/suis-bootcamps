@@ -6,7 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
-import com.suis.bootcamps.controller.dto.Competence.InCompetenceDTO;
+import com.suis.bootcamps.controller.dto.competence.InCompetenceDTO;
 import com.suis.bootcamps.domain.model.Competence;
 import com.suis.bootcamps.domain.repository.CompetenceRepository;
 import com.suis.bootcamps.service.CompetenceService;
