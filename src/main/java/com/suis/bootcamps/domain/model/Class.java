@@ -27,7 +27,7 @@ public class Class {
     private UUID tutor;
 
     @Column
-    private String duration;
+    private Integer duration;
 
     @OneToMany(mappedBy = "id")
     private List<ClassCompetence> classCompetences;
