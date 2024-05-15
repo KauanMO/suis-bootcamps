@@ -49,7 +49,7 @@ public class BadgeController {
         }
 
         List<OutBadgeDTO> dtos = badgesFound.stream()
-                .map(b -> new OutBadgeDTO(b))
+                .map(OutBadgeDTO::new)
                 .toList();
 
         return ResponseEntity.ok(dtos);

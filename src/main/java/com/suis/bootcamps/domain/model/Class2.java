@@ -15,7 +15,7 @@ import lombok.Data;
 @Data
 @Table
 @Entity
-public class Class {
+public class Class2 {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -27,7 +27,7 @@ public class Class {
     private UUID tutor;
 
     @Column
-    private String duration;
+    private Integer duration;
 
     @OneToMany(mappedBy = "id")
     private List<ClassCompetence> classCompetences;

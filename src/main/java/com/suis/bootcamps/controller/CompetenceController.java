@@ -49,7 +49,7 @@ public class CompetenceController {
         }
 
         List<OutCompetenceDTO> dtos = competencesFound.stream()
-                .map(c -> new OutCompetenceDTO(c))
+                .map(OutCompetenceDTO::new)
                 .toList();
 
         return ResponseEntity.ok(dtos);

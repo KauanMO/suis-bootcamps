@@ -49,7 +49,7 @@ public class BootcampController {
         }
 
         List<OutBootcampDTO> dtos = bootcampsFound.stream()
-                .map(b -> new OutBootcampDTO(b))
+                .map(OutBootcampDTO::new)
                 .toList();
 
         return ResponseEntity.ok(dtos);

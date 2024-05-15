@@ -26,7 +26,7 @@ public class ClassCompetence {
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
-    private Class class_;
+    private Class2 class2;
 
     @Column
     private UUID assignedBy;

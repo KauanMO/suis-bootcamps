@@ -4,6 +4,6 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.suis.bootcamps.domain.model.Class;
+import com.suis.bootcamps.domain.model.Class2;
 
-public interface ClassRepository extends JpaRepository<Class, UUID>{}
+public interface Class2Repository extends JpaRepository<Class2, UUID>{}
