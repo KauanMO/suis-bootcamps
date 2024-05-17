@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.suis.bootcamps.controller.dto.competence.InCompetenceDTO;
@@ -66,9 +67,9 @@ public class CompetenceController {
         return ResponseEntity.ok(new OutCompetenceDTO(competenceFound));
     }
 
-    @GetMapping("not-confirmed")
-    public ResponseEntity<List<OutCompetenceDTO>> findAllNotConfirmed() {
-        List<Competence> competencesFound = service.findAllNotConfirmed();
+    @GetMapping("by-confirmed")
+    public ResponseEntity<List<OutCompetenceDTO>> findAllNotConfirmed(@RequestParam Boolean confirmed) {
+        List<Competence> competencesFound = service.findAllByConfirmed(confirmed);
 
         if (competencesFound.isEmpty()) {
             return ResponseEntity.noContent().build();

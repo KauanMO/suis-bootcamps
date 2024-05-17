@@ -56,8 +56,8 @@ public class CompetenceServiceImpl implements CompetenceService {
     }
 
     @Override
-    public List<Competence> findAllNotConfirmed() {
-        return repository.findAllByConfirmedFalse();
+    public List<Competence> findAllByConfirmed(Boolean confirmed) {
+        return repository.findAllByConfirmed(confirmed);
     }
 
     @Override

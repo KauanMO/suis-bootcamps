@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.suis.bootcamps.domain.model.Competence;
 
 public interface CompetenceRepository extends JpaRepository<Competence, UUID>{
-    List<Competence> findAllByConfirmedFalse();
+    List<Competence> findAllByConfirmed(Boolean confirmed);
 }

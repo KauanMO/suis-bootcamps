@@ -10,5 +10,5 @@ import com.suis.bootcamps.service.exception.NotFoundException;
 public interface CompetenceService extends CrudService<Competence, UUID, InCompetenceDTO> {
     public Competence confirm(UUID id) throws NotFoundException;
 
-    public List<Competence> findAllNotConfirmed();
+    public List<Competence> findAllByConfirmed(Boolean confirmed);
 }
