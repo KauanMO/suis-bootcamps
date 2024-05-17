@@ -35,7 +35,6 @@ public class CompetenceController {
     @PostMapping
     public ResponseEntity<OutCompetenceDTO> register(@RequestBody @Valid InCompetenceDTO dto)
             throws URISyntaxException {
-        System.out.println(dto);
         Competence newCompetence = service.create(dto);
 
         URI uri = new URI("competences/" + newCompetence.getId());

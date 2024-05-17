@@ -24,7 +24,7 @@ public class Competence {
     private String name;
 
     @Column
-    private UUID createdBy;
+    private String createdBy;
 
     @OneToMany(mappedBy = "id")
     private List<ClassCompetence> classCompetences;
