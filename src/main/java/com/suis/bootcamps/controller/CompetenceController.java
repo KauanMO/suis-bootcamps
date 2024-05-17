@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -65,10 +66,33 @@ public class CompetenceController {
         return ResponseEntity.ok(new OutCompetenceDTO(competenceFound));
     }
 
+    @GetMapping("not-confirmed")
+    public ResponseEntity<List<OutCompetenceDTO>> findAllNotConfirmed() {
+        List<Competence> competencesFound = service.findAllNotConfirmed();
+
+        if (competencesFound.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        List<OutCompetenceDTO> dtos = competencesFound.stream()
+                .map(OutCompetenceDTO::new)
+                .toList();
+
+        return ResponseEntity.ok(dtos);
+    }
+
     // PUT
     @PutMapping("{id}")
     public ResponseEntity<OutCompetenceDTO> update(@PathVariable UUID id, @RequestBody @Valid InCompetenceDTO dto) {
         Competence competenceFound = service.update(id, dto);
+
+        return ResponseEntity.ok(new OutCompetenceDTO(competenceFound));
+    }
+
+    // PATCH
+    @PatchMapping("confirm/{id}")
+    public ResponseEntity<OutCompetenceDTO> confirm(@PathVariable UUID id) {
+        Competence competenceFound = service.confirm(id);
 
         return ResponseEntity.ok(new OutCompetenceDTO(competenceFound));
     }

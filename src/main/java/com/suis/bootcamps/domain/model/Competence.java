@@ -26,6 +26,9 @@ public class Competence {
     @Column
     private String createdBy;
 
+    @Column
+    private Boolean confirmed;
+
     @OneToMany(mappedBy = "id")
     private List<ClassCompetence> classCompetences;
 }

@@ -39,7 +39,25 @@ public class CompetenceServiceImpl implements CompetenceService {
 
         BeanUtils.copyProperties(dto, newCompetence);
 
+        newCompetence.setConfirmed(false);
+
         return repository.save(newCompetence);
+    }
+
+    @Override
+    public Competence confirm(UUID id) {
+        Competence competenceFound = repository.findById(id).orElseThrow(NotFoundException::new);
+
+        competenceFound.setConfirmed(true);
+
+        repository.save(competenceFound);
+
+        return competenceFound;
+    }
+
+    @Override
+    public List<Competence> findAllNotConfirmed() {
+        return repository.findAllByConfirmedFalse();
     }
 
     @Override
