@@ -26,10 +26,10 @@ import com.suis.bootcamps.service.CompetenceService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
+@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("competences")
-@CrossOrigin
 public class CompetenceController {
     final CompetenceService service;
 
