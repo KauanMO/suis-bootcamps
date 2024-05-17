@@ -21,7 +21,7 @@ public class Participant {
     private UUID id;
 
     @Column
-    private UUID user;
+    private String user;
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")

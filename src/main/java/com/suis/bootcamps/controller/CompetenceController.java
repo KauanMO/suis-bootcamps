@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,12 +27,15 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("competences")
+@CrossOrigin
 public class CompetenceController {
     final CompetenceService service;
 
     // POST
     @PostMapping
-    public ResponseEntity<OutCompetenceDTO> register(@RequestBody @Valid InCompetenceDTO dto) throws URISyntaxException {
+    public ResponseEntity<OutCompetenceDTO> register(@RequestBody @Valid InCompetenceDTO dto)
+            throws URISyntaxException {
+        System.out.println(dto);
         Competence newCompetence = service.create(dto);
 
         URI uri = new URI("competences/" + newCompetence.getId());

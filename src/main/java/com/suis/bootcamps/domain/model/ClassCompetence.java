@@ -29,5 +29,5 @@ public class ClassCompetence {
     private Class2 class2;
 
     @Column
-    private UUID assignedBy;
+    private String assignedBy;
 }

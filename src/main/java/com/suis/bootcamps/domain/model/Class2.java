@@ -24,7 +24,7 @@ public class Class2 {
     private String title;
 
     @Column
-    private UUID tutor;
+    private String tutor;
 
     @Column
     private Integer duration;
