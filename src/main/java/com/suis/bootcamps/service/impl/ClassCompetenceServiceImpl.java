@@ -1,5 +1,6 @@
 package com.suis.bootcamps.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -7,7 +8,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import com.suis.bootcamps.controller.dto.classCompetence.InClassCompetenceDTO;
+import com.suis.bootcamps.controller.dto.classCompetence.InClassListCompetencesDTO;
 import com.suis.bootcamps.domain.model.ClassCompetence;
+import com.suis.bootcamps.domain.model.Competence;
 import com.suis.bootcamps.domain.repository.ClassCompetenceRepository;
 import com.suis.bootcamps.service.ClassCompetenceService;
 import com.suis.bootcamps.service.exception.NotFoundException;
@@ -40,6 +43,30 @@ public class ClassCompetenceServiceImpl implements ClassCompetenceService {
         BeanUtils.copyProperties(dto, newClassCompetence);
 
         return repository.save(newClassCompetence);
+    }
+
+    @Override
+    public List<ClassCompetence> registerClassCompetenceList(InClassListCompetencesDTO dto) {
+        List<ClassCompetence> newClassCompetences = new ArrayList<>();
+
+        for (Competence competence : dto.competences()) {
+            ClassCompetence newClassCompetence = new ClassCompetence();
+            newClassCompetence.setCompetence(competence);
+            newClassCompetence.setAssignedBy(dto.assignedBy());
+            newClassCompetence.setClass2(dto.class2());
+
+            newClassCompetences.add(newClassCompetence);
+        }
+
+        return repository.saveAll(newClassCompetences);
+    }
+
+    public ClassCompetence toEntity(InClassCompetenceDTO dto) {
+        ClassCompetence classCompetence = new ClassCompetence();
+
+        BeanUtils.copyProperties(dto, classCompetence);
+
+        return classCompetence;
     }
 
     @Override

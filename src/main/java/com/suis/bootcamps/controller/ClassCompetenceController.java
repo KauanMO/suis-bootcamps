@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.suis.bootcamps.controller.dto.classCompetence.InClassCompetenceDTO;
+import com.suis.bootcamps.controller.dto.classCompetence.InClassListCompetencesDTO;
 import com.suis.bootcamps.controller.dto.classCompetence.OutClassCompetenceDTO;
 import com.suis.bootcamps.domain.model.ClassCompetence;
 import com.suis.bootcamps.service.ClassCompetenceService;
@@ -38,6 +39,17 @@ public class ClassCompetenceController {
         URI uri = new URI("class-competences/" + newClassCompetence.getId());
 
         return ResponseEntity.created(uri).body(new OutClassCompetenceDTO(newClassCompetence));
+    }
+
+    @PostMapping("list")
+    public ResponseEntity<List<OutClassCompetenceDTO>> registerList(@RequestBody @Valid InClassListCompetencesDTO dto) {
+        List<ClassCompetence> newClassCompetences = service.registerClassCompetenceList(dto);
+
+        List<OutClassCompetenceDTO> ccDtos = newClassCompetences.stream()
+                .map(OutClassCompetenceDTO::new)
+                .toList();
+
+        return ResponseEntity.created(null).body(ccDtos);
     }
 
     // GET
@@ -65,7 +77,8 @@ public class ClassCompetenceController {
 
     // PUT
     @PutMapping("{id}")
-    public ResponseEntity<OutClassCompetenceDTO> update(@PathVariable UUID id, @RequestBody @Valid InClassCompetenceDTO dto) {
+    public ResponseEntity<OutClassCompetenceDTO> update(@PathVariable UUID id,
+            @RequestBody @Valid InClassCompetenceDTO dto) {
         ClassCompetence classCompetenceFound = service.update(id, dto);
 
         return ResponseEntity.ok(new OutClassCompetenceDTO(classCompetenceFound));
