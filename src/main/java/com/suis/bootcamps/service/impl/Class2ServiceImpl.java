@@ -57,4 +57,11 @@ public class Class2ServiceImpl implements Class2Service {
 
         repository.delete(classFound);
     }
+
+    @Override
+    public List<Class2> findAllByConfirmed(Boolean confirmed) {
+        List<Class2> classesFound = repository.findByConfirmed(confirmed);
+
+        return classesFound;
+    }
 }

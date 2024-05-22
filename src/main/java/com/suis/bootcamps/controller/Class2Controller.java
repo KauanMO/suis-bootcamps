@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.suis.bootcamps.controller.dto.class2.InClass2DTO;
@@ -62,6 +63,21 @@ public class Class2Controller {
         Class2 classFound = service.findById(id);
 
         return ResponseEntity.ok(new OutClass2DTO(classFound));
+    }
+
+    @GetMapping("by-confirmed")
+    public ResponseEntity<List<OutClass2DTO>> findAllByConfirmed(@RequestParam Boolean confirmed) {
+        List<Class2> classesFound = service.findAllByConfirmed(confirmed);
+
+        if (classesFound.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        List<OutClass2DTO> dtos = classesFound.stream()
+                .map(OutClass2DTO::new)
+                .toList();
+
+        return ResponseEntity.ok(dtos);
     }
 
     // PUT

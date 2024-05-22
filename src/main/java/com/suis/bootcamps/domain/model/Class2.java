@@ -29,6 +29,9 @@ public class Class2 {
     @Column
     private Integer duration;
 
+    @Column
+    private Boolean confirmed;
+
     @OneToMany(mappedBy = "id")
     private List<ClassCompetence> classCompetences;
 }
