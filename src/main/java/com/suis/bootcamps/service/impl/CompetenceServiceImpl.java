@@ -10,6 +10,7 @@ import com.suis.bootcamps.controller.dto.competence.InCompetenceDTO;
 import com.suis.bootcamps.domain.model.Competence;
 import com.suis.bootcamps.domain.repository.CompetenceRepository;
 import com.suis.bootcamps.service.CompetenceService;
+import com.suis.bootcamps.service.exception.ConflictException;
 import com.suis.bootcamps.service.exception.NotFoundException;
 
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,10 @@ public class CompetenceServiceImpl implements CompetenceService {
 
     @Override
     public Competence create(InCompetenceDTO dto) {
+        if (repository.existsByNameIgnoreCase(dto.name())) {
+            throw new ConflictException("Competência");
+        }
+
         Competence newCompetence = new Competence();
 
         BeanUtils.copyProperties(dto, newCompetence);

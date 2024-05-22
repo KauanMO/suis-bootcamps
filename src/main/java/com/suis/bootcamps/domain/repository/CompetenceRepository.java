@@ -9,4 +9,6 @@ import com.suis.bootcamps.domain.model.Competence;
 
 public interface CompetenceRepository extends JpaRepository<Competence, UUID>{
     List<Competence> findAllByConfirmed(Boolean confirmed);
+
+    Boolean existsByNameIgnoreCase(String name);
 }
