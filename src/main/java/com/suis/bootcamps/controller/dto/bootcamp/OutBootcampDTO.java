@@ -10,7 +10,7 @@ public record OutBootcampDTO(UUID id,
         Integer max_participants,
         LocalDateTime inicialDate,
         LocalDateTime finalDate,
-        UUID createdBy,
+        String createdBy,
         String icon) {
     public OutBootcampDTO(Bootcamp b) {
         this(b.getId(),

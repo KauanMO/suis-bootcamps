@@ -1,7 +1,6 @@
 package com.suis.bootcamps.controller.dto.bootcamp;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.FutureOrPresent;
@@ -15,5 +14,5 @@ public record InBootcampDTO(
         @NotNull @Min(2) Integer maxParticipants,
         @FutureOrPresent LocalDateTime inicialDate,
         @Future LocalDateTime finalDate,
-        @NotNull UUID createdBy) {
+        @NotNull String createdBy) {
 }

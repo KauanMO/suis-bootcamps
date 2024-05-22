@@ -38,7 +38,7 @@ public class Bootcamp {
     private LocalDateTime finalDate;
 
     @Column
-    private UUID createdBy;
+    private String createdBy;
 
     @OneToMany(mappedBy = "id")
     private List<Participant> participants;
