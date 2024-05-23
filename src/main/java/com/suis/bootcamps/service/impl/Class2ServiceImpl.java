@@ -39,6 +39,8 @@ public class Class2ServiceImpl implements Class2Service {
 
         BeanUtils.copyProperties(dto, newClass);
 
+        newClass.setConfirmed(false);
+
         return repository.save(newClass);
     }
 
