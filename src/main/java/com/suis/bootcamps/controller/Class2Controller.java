@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -78,6 +79,14 @@ public class Class2Controller {
                 .toList();
 
         return ResponseEntity.ok(dtos);
+    }
+
+    // PATCH
+    @PatchMapping("{id}")
+    public ResponseEntity<OutClass2DTO> confirmClass(@PathVariable UUID id) {
+        Class2 classUpdated = service.confirmClass(id);
+
+        return ResponseEntity.ok(new OutClass2DTO(classUpdated));
     }
 
     // PUT

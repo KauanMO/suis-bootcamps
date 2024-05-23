@@ -8,4 +8,6 @@ import com.suis.bootcamps.domain.model.Class2;
 
 public interface Class2Service extends CrudService<Class2, UUID, InClass2DTO> {
     List<Class2> findAllByConfirmed(Boolean confirmed);
+
+    Class2 confirmClass(UUID id);
 }

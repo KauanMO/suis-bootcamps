@@ -66,4 +66,13 @@ public class Class2ServiceImpl implements Class2Service {
 
         return classesFound;
     }
+
+    @Override
+    public Class2 confirmClass(UUID id) {
+        Class2 classFound = repository.findById(id).orElseThrow(NotFoundException::new);
+
+        classFound.setConfirmed(true);
+
+        return repository.save(classFound);
+    }
 }
