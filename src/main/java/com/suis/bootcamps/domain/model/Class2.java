@@ -27,6 +27,9 @@ public class Class2 {
     private String tutor;
 
     @Column
+    private Boolean tutorConfirmed;
+
+    @Column
     private Integer duration;
 
     @Column

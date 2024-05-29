@@ -37,7 +37,7 @@ public class CompetenceServiceImpl implements CompetenceService {
     @Override
     public Competence create(InCompetenceDTO dto) {
         if (repository.existsByNameIgnoreCase(dto.name())) {
-            throw new ConflictException("Competência");
+            throw new ConflictException(Competence.class);
         }
 
         Competence newCompetence = new Competence();

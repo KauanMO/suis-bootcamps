@@ -10,4 +10,8 @@ public interface Class2Service extends CrudService<Class2, UUID, InClass2DTO> {
     List<Class2> findAllByConfirmed(Boolean confirmed);
 
     Class2 confirmClass(UUID id);
+
+    void confirmTutor(UUID id);
+
+    void sendConfirmTutorEmail(String userId);
 }

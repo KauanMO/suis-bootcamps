@@ -5,14 +5,18 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.CONFLICT)
 public class ConflictException extends RuntimeException {
-    public String objectName;
+    public String message;
 
-    public ConflictException(String objectName) {
-        this.objectName = objectName;
+    public ConflictException(Object object) {
+        this.message = "Conflito em " + object.toString();
+    }
+
+    public ConflictException(String message) {
+        this.message = message;
     }
 
     @Override
     public String getMessage() {
-        return "Conflito de " + this.objectName;
+        return this.message;
     }
 }

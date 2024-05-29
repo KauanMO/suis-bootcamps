@@ -81,12 +81,26 @@ public class Class2Controller {
         return ResponseEntity.ok(dtos);
     }
 
+    @GetMapping("user/{userId}")
+    public ResponseEntity<?> sendEmailTeste(@PathVariable String userId) {
+        service.sendConfirmTutorEmail(userId);
+        
+        return ResponseEntity.ok().build();
+    }
+
     // PATCH
-    @PatchMapping("{id}")
+    @PatchMapping("confirm-class/{id}")
     public ResponseEntity<OutClass2DTO> confirmClass(@PathVariable UUID id) {
         Class2 classUpdated = service.confirmClass(id);
 
         return ResponseEntity.ok(new OutClass2DTO(classUpdated));
+    }
+
+    @PatchMapping("confirm-tutor/{id}")
+    public ResponseEntity<?> confirmClassTutor(@PathVariable UUID id) {
+        service.confirmTutor(id);
+
+        return ResponseEntity.ok().build();
     }
 
     // PUT
