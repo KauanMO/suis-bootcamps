@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "email.sender.host",
+    "type": "java.lang.String",
+    "description": "Host of your email sender"
+  },
+  {
+    "name": "email.sender.debug",
+    "type": "java.lang.String",
+    "description": "Boolean of debug"
+  },
+  {
+    "name": "email.sender.user",
+    "type": "java.lang.String",
+    "description": "Sender email"
+  },
+  {
+    "name": "email.sender.password",
+    "type": "java.lang.String",
+    "description": "Sender password"
+  }
+]}

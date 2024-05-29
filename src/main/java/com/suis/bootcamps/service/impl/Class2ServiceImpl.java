@@ -39,6 +39,8 @@ public class Class2ServiceImpl implements Class2Service {
 
         BeanUtils.copyProperties(dto, newClass);
 
+        newClass.setConfirmed(false);
+
         return repository.save(newClass);
     }
 
@@ -56,5 +58,21 @@ public class Class2ServiceImpl implements Class2Service {
         Class2 classFound = this.findById(id);
 
         repository.delete(classFound);
+    }
+
+    @Override
+    public List<Class2> findAllByConfirmed(Boolean confirmed) {
+        List<Class2> classesFound = repository.findByConfirmed(confirmed);
+
+        return classesFound;
+    }
+
+    @Override
+    public Class2 confirmClass(UUID id) {
+        Class2 classFound = repository.findById(id).orElseThrow(NotFoundException::new);
+
+        classFound.setConfirmed(true);
+
+        return repository.save(classFound);
     }
 }
