@@ -7,6 +7,6 @@ import com.suis.bootcamps.domain.model.Participant;
 
 public record OutParticipantDTO(UUID id, String user, OutBootcampDTO bootcamp) {
     public OutParticipantDTO(Participant p) {
-        this(p.getId(), p.getUser(), new OutBootcampDTO(p.getBootcamp()));
+        this(p.getId(), p.getUserId(), new OutBootcampDTO(p.getBootcamp()));
     }
 }
