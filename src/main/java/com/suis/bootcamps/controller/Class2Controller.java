@@ -81,13 +81,6 @@ public class Class2Controller {
         return ResponseEntity.ok(dtos);
     }
 
-    @GetMapping("user/{userId}")
-    public ResponseEntity<?> sendEmailTeste(@PathVariable String userId) {
-        service.sendConfirmTutorEmail(userId);
-        
-        return ResponseEntity.ok().build();
-    }
-
     // PATCH
     @PatchMapping("confirm-class/{id}")
     public ResponseEntity<OutClass2DTO> confirmClass(@PathVariable UUID id) {

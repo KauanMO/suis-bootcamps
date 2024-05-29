@@ -12,6 +12,4 @@ public interface Class2Service extends CrudService<Class2, UUID, InClass2DTO> {
     Class2 confirmClass(UUID id);
 
     void confirmTutor(UUID id);
-
-    void sendConfirmTutorEmail(String userId);
 }

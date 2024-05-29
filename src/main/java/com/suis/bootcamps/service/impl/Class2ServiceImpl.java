@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import com.suis.bootcamps.config.ClientConfig;
 import com.suis.bootcamps.controller.dto.class2.InClass2DTO;
 import com.suis.bootcamps.domain.model.Class2;
 import com.suis.bootcamps.domain.model.template.User;
@@ -25,6 +26,7 @@ public class Class2ServiceImpl implements Class2Service {
     final Class2Repository repository;
     final RestTemplateService<User, String> userService;
     final EmailService emailService;
+    final ClientConfig clientConfig;
 
     @Override
     public List<Class2> findAll() {
@@ -49,7 +51,11 @@ public class Class2ServiceImpl implements Class2Service {
         newClass.setConfirmed(false);
         newClass.setTutorConfirmed(false);
 
-        return repository.save(newClass);
+        Class2 insertedClass2 = repository.save(newClass);
+
+        sendConfirmTutorEmail(dto.tutor(), insertedClass2);
+
+        return insertedClass2;
     }
 
     @Override
@@ -92,15 +98,27 @@ public class Class2ServiceImpl implements Class2Service {
             throw new ConflictException("Tutor já confirmado para esta aula");
 
         classFound.setTutorConfirmed(true);
+
+        repository.save(classFound);
     }
 
     @Async
-    @Override
-    public void sendConfirmTutorEmail(String userId) {
+    public void sendConfirmTutorEmail(String userId, Class2 class2) {
         User user = userService.getEntityById("users", userId, User.class);
 
         String userEmail = user.getEmail();
-        
-        emailService.send(userEmail, "Aceitar aula", "Aceitar");
+
+        clientConfig.getUrl();
+
+        emailService.send(userEmail, "Aceitar aula",
+                String.format(
+                        """
+                                Você foi selecionado para participar da aula "%S"!
+                                Caso não tenha conhecimento dessa seleção, pedimos que ignore este e-mail, mas caso queira fazer parte desta jornada, acesse o link ao fim do email
+                                para confirmar a seleção.
+
+                                %s
+                                """,
+                        class2.getTitle(), clientConfig.getUrl() + "/class/acceptClass/" + class2.getId() + "/" + userId));
     }
 }
